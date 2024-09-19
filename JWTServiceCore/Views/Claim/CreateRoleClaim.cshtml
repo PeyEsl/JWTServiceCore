@@ -1,0 +1,40 @@
+﻿@model JWTServiceCore.Models.ViewModels.ClaimViewModel
+
+@{
+    ViewData["Title"] = "Create Claim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Role Claim</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Claim" asp-action="CreateRoleClaim">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-2">
+                <label asp-for="RoleName" class="control-label"></label>
+                <input asp-for="RoleName" class="form-control" readonly="readonly" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Claim" asp-action="RoleClaims" asp-route-roleName="@Model.RoleName">Back to Role List</a>
+</div>

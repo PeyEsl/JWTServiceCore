@@ -1,0 +1,46 @@
+﻿@model JWTServiceCore.Models.ViewModels.RegisterWithPhoneViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Register</h1>
+
+<h4>Register with Phone</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Auth" asp-action="RegisterWithPhone">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-2">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AcceptPolicy" /> @Html.DisplayNameFor(model => model.AcceptPolicy)
+                </label>
+            </div>
+            <!--captcha-->
+            <div class="form-group mb-2">
+                <google-re-captcha></google-re-captcha>
+                @Html.AntiForgeryToken()
+            </div>
+            <div class="form-group mb-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Cancel</a> |
+    <a asp-controller="Auth" asp-action="Register">Register</a>
+</div>
+
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+}

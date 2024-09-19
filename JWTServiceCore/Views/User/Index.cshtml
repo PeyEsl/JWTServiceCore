@@ -1,0 +1,81 @@
+﻿@model IEnumerable<JWTServiceCore.Models.ViewModels.UserViewModel>
+
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Users</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Claims)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.PhoneNumber)
+                </td>
+                <td>
+                    @foreach (var role in user.Roles!)
+                    {
+                        <div>@role</div>
+                    }
+                </td>
+                <td>
+                    @foreach (var claim in user.Claims!)
+                    {
+                        <div><b>Type: </b>@claim.Type | <b>Value: </b>@claim.Value</div>
+                    }
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a> |
+                    <a asp-controller="User" asp-action="Details" asp-route-id="@user.Id">Details</a> |
+                    <a asp-controller="User" asp-action="Delete" asp-route-id="@user.Id">Delete</a> |
+                    <a asp-controller="User" asp-action="Roles" asp-route-userId="@user.Id">Roles</a> |
+                    <a asp-controller="Claim" asp-action="UserClaims" asp-route-userId="@user.Id">Claims</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

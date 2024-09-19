@@ -1,0 +1,39 @@
+﻿@model JWTServiceCore.Models.ViewModels.ClaimViewModel
+
+@{
+    ViewData["Title"] = "Delete Claim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User Claim</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+    </dl>
+    
+    <form asp-controller="Claim" asp-action="DeleteUserClaim" asp-route-userId="@Model.UserId" asp-route-claimType="@Model.Type" asp-route-claimValue="@Model.Value">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-controller="Claim" asp-action="UserClaims" asp-route-userId="@Model.UserId">Back to Claim List</a>
+    </form>
+</div>
